@@ -5,61 +5,58 @@ class ProductItem extends HTMLElement {
     super();
 
     // Attach a shadow root to <product-list>
-    const shadowRoot = this.attachShadow({ mode: 'open' });
+    const shadowRoot = this.attachShadow({ mode: "open" });
 
     // Create a list that will store the img, name, and price
-    let lst = document.createElement('li');
-    lst.setAttribute('class', 'product');
+    let lst = document.createElement("li");
+    lst.setAttribute("class", "product");
 
     // Create the img
-    let img = document.createElement('img');
-    img.setAttribute('src', imgSrc);
-    img.setAttribute('alt', title);
-    img.setAttribute('width', 200);
+    let img = document.createElement("img");
+    img.setAttribute("src", imgSrc);
+    img.setAttribute("alt", title);
+    img.setAttribute("width", 200);
 
     // Create the name
-    let name = document.createElement('p');
-    name.setAttribute('class', 'title');
+    let name = document.createElement("p");
+    name.setAttribute("class", "title");
     name.innerHTML = title;
 
     // Create the price
-    let price = document.createElement('p');
-    price.setAttribute('class', 'price');
-    price.innerHTML = '$' + itemPrice;
+    let price = document.createElement("p");
+    price.setAttribute("class", "price");
+    price.innerHTML = "$" + itemPrice;
 
     // Create the button
-    let btn = document.createElement('button');
+    let btn = document.createElement("button");
     btn.innerHTML = state;
-
-    // Update the buttons of the items
-
 
     // Increments count and notifies the user
     btn.onclick = function () {
-      let count = document.getElementById('cart-count');
+      let count = document.getElementById("cart-count");
 
       // Change the state of the button
-      if (btn.innerHTML == 'Add to Cart') {
+      if (btn.innerHTML == "Add to Cart") {
         // Adding an item
         addedList.push(id);
-        btn.innerHTML = 'Remove from Cart';
-        alert('Added to Cart!');
+        btn.innerHTML = "Remove from Cart";
+        alert("Added to Cart!");
       } else {
         // Remove an item
         addedList.splice(addedList.indexOf(id), 1);
-        btn.innerHTML = 'Add to Cart';
-        alert('Removed from Cart!');
+        btn.innerHTML = "Add to Cart";
+        alert("Removed from Cart!");
       }
 
       // Store the cart data in localStorage
-      localStorage.setItem('itemCnt', JSON.stringify(addedList));
+      localStorage.setItem("itemCnt", JSON.stringify(addedList));
 
       // Display the count of the cart
       count.innerHTML = addedList.length;
-    }
+    };
 
     // Create CSS style
-    let style = document.createElement('style');
+    let style = document.createElement("style");
 
     // Store the data onto the 'li' tag
     lst.appendChild(img);
@@ -136,10 +133,8 @@ class ProductItem extends HTMLElement {
       overflow: auto;
       text-overflow: unset;
     }
-    `
+    `;
   }
-
 }
 
-
-customElements.define('product-item', ProductItem);
+customElements.define("product-item", ProductItem);
